@@ -2,32 +2,24 @@
 
 def main():
     
-    resolution = 600, 600
-    
-    red = []
-    green = []
-    blue = []
+    resolution = (1920, 1080)
 
-    for i in range(resolution[0]):
-        red.append([])
-        green.append([])
-        blue.append([])
-        for j in range(resolution[1]):
-            red[i].append(255)
-            green[i].append(100)
-            blue[i].append(50)
+    pixel = {
+        "R": 12,
+        "G": 56,
+        "B": 100
+    }
+    
+    pixel_array = list([pixel for _ in range(resolution[0])] for _ in range(resolution[1]))
 
     print("P3")
-    print("# Testowy plik \".PPM\"")
+    print("# Testowy plik \".PPM\".")
+    print("# Każda linijka jest zarezerwowana dla jednego piksela.")
     print("{} {}".format(resolution[0], resolution[1]))
     print("255")
-    for i in range(resolution[0]):
-        for j in range(resolution[1]):
-            if j < resolution[1] - 1:
-                end_print = " "
-            else:
-                end_print = "\n"
-            print("{} {} {}".format(red[i][j], green[i][j], blue[i][j]), end=end_print)
+    for row_of_pixels in pixel_array:
+        for single_pixel in row_of_pixels:
+            print("{} {} {}".format(single_pixel["R"], single_pixel["G"], single_pixel["B"]))
 
 if __name__ == "__main__":
     main()
